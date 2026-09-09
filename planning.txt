@@ -1,0 +1,224 @@
+Yes. Since you're planning to go **JavaScript → Backend → Mobile**, I would avoid jumping between 10 different websites. Pick a few good free ones and use each for a specific purpose.
+
+## ⭐ My recommended free learning websites
+
+### 1. [freeCodeCamp](https://www.freecodecamp.org/?utm_source=chatgpt.com) — Start here
+
+This is probably the best place for you right now.
+
+You can learn:
+
+* JavaScript
+* APIs
+* Node.js
+* Express
+* Databases
+* Backend development
+* React
+* Algorithms
+* Git/GitHub
+
+It also has **projects and certifications**.
+
+Since you're already learning JavaScript, I would continue there before jumping into backend.
+
+---
+
+### 2. [The Odin Project](https://www.theodinproject.com/?utm_source=chatgpt.com) — Build real projects
+
+I especially recommend this one for you.
+
+Their **Full Stack JavaScript** path goes roughly:
+
+```text
+HTML/CSS
+   ↓
+JavaScript
+   ↓
+Databases
+   ↓
+Node.js
+   ↓
+Express
+   ↓
+PostgreSQL
+   ↓
+Projects
+```
+
+The curriculum is completely free and project-based. ([The Odin Project][1])
+
+The NodeJS section specifically teaches server-side JavaScript and Express, including building REST APIs. ([The Odin Project][2])
+
+[Open The Odin Project Full Stack JavaScript path](https://www.theodinproject.com/paths/2?utm_source=chatgpt.com)
+
+---
+
+### 3. [MDN Web Docs](https://developer.mozilla.org/?utm_source=chatgpt.com) — Your reference book
+
+Don't necessarily use MDN as your *only* course.
+
+Use it when you don't understand something.
+
+For example:
+
+> "What exactly is `async/await`?"
+
+> "How does HTTP work?"
+
+> "What is a JavaScript Promise?"
+
+> "How does Express routing work?"
+
+MDN has a dedicated Node/Express tutorial that covers setting up Express, routes, databases, forms, and deployment. ([MDN Web Docs][3])
+
+---
+
+## 🗄️ For databases
+
+### 4. [SQLBolt](https://sqlbolt.com/?utm_source=chatgpt.com)
+
+Very good for learning SQL interactively.
+
+You'll practice things like:
+
+```sql
+SELECT
+INSERT
+UPDATE
+DELETE
+WHERE
+JOIN
+GROUP BY
+```
+
+I'd recommend learning SQL before getting too deep into backend databases.
+
+---
+
+## 📱 For mobile development
+
+Once you're comfortable with backend, choose **ONE** mobile path.
+
+### If you choose Flutter
+
+Use the official:
+
+[Flutter Learn](https://docs.flutter.dev/learn?utm_source=chatgpt.com)
+
+Flutter's official learning path starts with Dart and then moves into building Flutter applications, including networking and app architecture. ([Flutter Documentation][4])
+
+You can also use:
+
+[Dart documentation](https://dart.dev/learn?utm_source=chatgpt.com)
+
+Your path would be:
+
+```text
+Dart
+ ↓
+Flutter
+ ↓
+Mobile UI
+ ↓
+Navigation
+ ↓
+State management
+ ↓
+HTTP/API
+ ↓
+Your Node.js backend
+```
+
+### If you choose Android/Kotlin
+
+Use:
+
+[Android Developers](https://developer.android.com/?utm_source=chatgpt.com)
+
+and
+
+[Kotlin documentation](https://kotlinlang.org/docs/home.html?utm_source=chatgpt.com)
+
+Your path would be:
+
+```text
+Kotlin
+ ↓
+Android Studio
+ ↓
+Android SDK
+ ↓
+Activities / UI
+ ↓
+Navigation
+ ↓
+API requests
+ ↓
+Your Node.js backend
+```
+
+---
+
+# 🎯 If I were creating your learning path
+
+Because you're **already learning JavaScript**, I wouldn't start over.
+
+I'd do this:
+
+```text
+                    YOUR PATH
+
+              JavaScript
+                  │
+                  ▼
+             Node.js
+                  │
+                  ▼
+              Express
+                  │
+                  ▼
+            REST APIs
+                  │
+                  ▼
+             SQL / DB
+                  │
+                  ▼
+          Authentication
+                  │
+                  ▼
+        Backend Projects
+                  │
+                  ▼
+        ┌─────────┴─────────┐
+        ▼                   ▼
+     Flutter              Kotlin
+      + Dart             + Android
+        │                   │
+        └─────────┬─────────┘
+                  ▼
+           Mobile + Backend
+```
+
+### And use the websites like this:
+
+| What you're learning | Website                              |
+| -------------------- | ------------------------------------ |
+| JavaScript           | **freeCodeCamp**                     |
+| JavaScript projects  | **The Odin Project**                 |
+| Node.js              | **The Odin Project**                 |
+| Express              | **The Odin Project + MDN**           |
+| SQL                  | **SQLBolt**                          |
+| Backend reference    | **MDN**                              |
+| Flutter              | **Flutter official docs**            |
+| Dart                 | **Dart official docs**               |
+| Kotlin/Android       | **Android Developers + Kotlin docs** |
+
+**One important thing:** don't try to complete all of these simultaneously. For now, I'd stay focused on **JavaScript → Node.js → Express → SQL**. Once you can build a small backend by yourself, we'll move into mobile and connect the two.
+
+That approach will make the learning much less confusing.
+
+[1]: https://www.theodinproject.com/paths/2?utm_source=chatgpt.com "Full Stack JavaScript | The Odin Project"
+[2]: https://www.theodinproject.com/lessons/node-path-nodejs-introduction-to-express?utm_source=chatgpt.com "Introduction to Express | The Odin Project"
+[3]: https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs?utm_source=chatgpt.com "Express web framework (Node.js/JavaScript) - Learn web development | MDN"
+[4]: https://docs.flutter.dev/learn?utm_source=chatgpt.com "Learn Flutter"
