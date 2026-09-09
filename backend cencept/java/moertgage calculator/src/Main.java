@@ -10,6 +10,7 @@ public class Main{
         int principal=scanner.nextInt();
         System.out.println("Annual Interest Rate: ");
         float interest=scanner.nextFloat();
+        interest= interest/100;
         System.out.println("Period (Years): " );
         int year= scanner.nextInt();
         double mortgage = principal *
