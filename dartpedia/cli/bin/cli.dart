@@ -6,7 +6,10 @@ void main(List<String> arguments) {
     printUsage();
   }else if (arguments.first == 'version'){
     print('Dartpedia CLI version $version');
-  }else{
+  }else if (arguments.first == 'search'){
+    print('Search command recognized!');
+  }
+  else{
     printUsage();
   }
 
