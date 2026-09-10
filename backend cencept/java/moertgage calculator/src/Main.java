@@ -18,4 +18,5 @@ public class Main{
                 / (Math.pow(1 + interest, year) - 1);
         System.out.println("Mortagage: "+mortgage);
     }
+
 }
