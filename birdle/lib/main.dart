@@ -14,7 +14,7 @@ class MainApp extends StatelessWidget {
         appBar: AppBar(
           title: const Align(
             alignment: Alignment.centerLeft,
-            child: Text('Birdle'),
+            child: Center(child: Text('Birdle'),),
           ),
         ),
         body: Center(child: GamePage()),
@@ -54,16 +54,28 @@ class Tile extends StatelessWidget {
   }
 }
 
-class GamePage extends StatelessWidget{
-GamePage({super.key});
+class GamePage extends StatelessWidget {
+  GamePage({super.key});
 
-final Game _game = Game();
+  // This manages game logic, and is out of scope for this lesson.
+  final Game _game = Game();
 
-@override
-Widget build(BuildContext context){
-
-  return Container();
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        spacing: 5.0,
+        children: [
+          for (final guess in _game.guesses)
+            Row(
+              spacing: 5.0,
+              children: [
+                for (final letter in guess) Tile(letter.char, letter.type),
+              ],
+            ),
+        ],
+      ),
+    );
+  }
 }
-
-}
-
