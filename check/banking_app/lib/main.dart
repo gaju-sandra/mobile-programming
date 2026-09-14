@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/splash_screens.dart';
 
 void main() {
   runApp(const BankingApp());
@@ -14,11 +15,7 @@ class BankingApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Scaffold(
-        body: Center(
-          child: Text('Welcome to Banking App'),
-        ),
-      ),
+      home: const SplashScreen(),
     );
   }
 }
