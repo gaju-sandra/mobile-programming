@@ -1,106 +1,66 @@
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
-import '../services/api_service.dart';
+import '../services/mock_data.dart';
+import '../theme/app_theme.dart';
 
-class HistoryScreen extends StatefulWidget {
-  final int accountId;
-
-  const HistoryScreen({super.key, required this.accountId});
+/// Used as a bottom-nav tab (in HomeShell) — reads straight from MockBank,
+/// no accountId needed since there's only one mock account.
+class HistoryTabScreen extends StatefulWidget {
+  const HistoryTabScreen({super.key});
 
   @override
-  State<HistoryScreen> createState() => _HistoryScreenState();
+  State<HistoryTabScreen> createState() => _HistoryTabScreenState();
 }
 
-class _HistoryScreenState extends State<HistoryScreen> {
-  List<Transaction> _transactions = [];
-  bool _isLoading = true;
-  String? _errorMessage;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadTransactions();
-  }
-
-  Future<void> _loadTransactions() async {
-    setState(() {
-      _isLoading = true;
-      _errorMessage = null;
-    });
-
-    try {
-      final data = await ApiService.getTransactionHistory(widget.accountId);
-      setState(() {
-        _transactions = data.map((json) => Transaction.fromJson(json)).toList();
-        _isLoading = false;
-      });
-    } catch (e) {
-      setState(() {
-        _errorMessage = 'Could not load transactions.';
-        _isLoading = false;
-      });
-    }
-  }
-
+class _HistoryTabScreenState extends State<HistoryTabScreen> {
   @override
   Widget build(BuildContext context) {
+    final transactions = MockBank.instance.transactions;
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Transaction History')),
+      appBar: AppBar(title: const Text('Activity')),
       body: RefreshIndicator(
-        onRefresh: _loadTransactions,
-        child: _buildBody(),
+        onRefresh: () async => setState(() {}),
+        child: transactions.isEmpty
+            ? ListView(
+                children: const [
+                  SizedBox(height: 100),
+                  Center(child: Text('No transactions yet.')),
+                ],
+              )
+            : ListView.builder(
+                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                itemCount: transactions.length,
+                itemBuilder: (context, index) {
+                  final tx = transactions[index];
+                  final isCredit = tx.type == TransactionType.credit;
+
+                  return Card(
+                    margin: const EdgeInsets.symmetric(vertical: 6),
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: isCredit
+                            ? AppColors.success.withValues(alpha: 0.1)
+                            : AppColors.danger.withValues(alpha: 0.1),
+                        child: Icon(
+                          isCredit ? Icons.arrow_downward : Icons.arrow_upward,
+                          color: isCredit ? AppColors.success : AppColors.danger,
+                        ),
+                      ),
+                      title: Text(tx.title),
+                      subtitle: Text('${tx.date.day}/${tx.date.month}/${tx.date.year}'),
+                      trailing: Text(
+                        '${isCredit ? '+' : '-'}\$${tx.amount.toStringAsFixed(2)}',
+                        style: TextStyle(
+                          color: isCredit ? AppColors.success : AppColors.danger,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
       ),
     );
-  }
-
-  Widget _buildBody() {
-    if (_isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
-    if (_errorMessage != null) {
-      return ListView(
-        children: [
-          const SizedBox(height: 100),
-          Center(child: Text(_errorMessage!)),
-        ],
-      );
-    }
-
-    if (_transactions.isEmpty) {
-      return const Center(child: Text('No transactions yet.'));
-    }
-
-    return ListView.builder(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      itemCount: _transactions.length,
-      itemBuilder: (context, index) {
-        final tx = _transactions[index];
-        final isCredit = tx.type == TransactionType.credit;
-
-        return ListTile(
-          leading: CircleAvatar(
-            backgroundColor: isCredit ? Colors.green.shade50 : Colors.red.shade50,
-            child: Icon(
-              isCredit ? Icons.arrow_downward : Icons.arrow_upward,
-              color: isCredit ? Colors.green : Colors.red,
-            ),
-          ),
-          title: Text(tx.title),
-          subtitle: Text(_formatDate(tx.date)),
-          trailing: Text(
-            '${isCredit ? '+' : '-'}\$${tx.amount.toStringAsFixed(2)}',
-            style: TextStyle(
-              color: isCredit ? Colors.green : Colors.red,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  String _formatDate(DateTime date) {
-    return '${date.day}/${date.month}/${date.year}';
   }
 }
